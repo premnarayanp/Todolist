@@ -4,11 +4,11 @@ import "../styles/todoForm.css"
     return(
         <form className="todoForm">
              <div className="toggleFields">
-                 <label for="toggleBtn">Completed:</label>
-                 <input id="toggleBtn" className="todoToggle" type="checkbox" />
+                 <label>Completed:</label>
+                 <input {...props.completed} className="todoToggle" type="checkbox" />
              </div>
-             <input  className="todoContent" type="text" placeholder="Type your todo here...." />
-             <button className="submitTodo">Post/Add Todo</button>
+             <input {...props.todoTitle} className="todoContent" type="text" placeholder="Type your todo here...." />
+             <button onClick={props.onSubmit} className="submitTodo">Post/Add Todo</button>
         </form>
     )
 }

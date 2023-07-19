@@ -52,13 +52,16 @@ const customFetch = async (url, { body, ...customConfig }) => {
     });
   };
 
-//   //costume function for postTodo
-//   export const postTodo = () => {
-//     const API_URLS=`${API_ROOT}/posts`;
-//     return customFetch(API_URLS, {
-//       method: 'POST',
-//     });
-//   };
+  //costume function for postTodo
+  export const postTodo = (content) => {
+    const API_URLS=`${API_ROOT}/posts`;
+    return customFetch(API_URLS, {
+      method: 'POST',
+      body: {
+        content,
+      },
+    });
+  };
 
 //   //costume function for deleteTodo
 //   export const deleteTodo = (id) => {
