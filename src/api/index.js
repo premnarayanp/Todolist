@@ -21,12 +21,18 @@ const customFetch = async (url, { body, ...customConfig }) => {
       const response = await fetch(url, config);
       console.log("url=",url,"config=",config)
       const data = await response.json();
-  
+    //   console.log("response=",response);
+    //   console.log("data=",data);
       if (data) {
         return {
-          data: data.data,
+          data:data,
           success: true,
         };
+      }else{
+        return {
+            data:[],
+            success: true,
+          };
       }
   
     } catch (error) {
@@ -38,13 +44,13 @@ const customFetch = async (url, { body, ...customConfig }) => {
     }
   };
 
-//   //costume function for getTodo
-//   export const getTodo = () => {
-//     const API_URLS=`${API_ROOT}/todos`;
-//     return customFetch(API_URLS, {
-//       method: 'GET',
-//     });
-//   };
+  //costume function for getTodo
+  export const getTodoLists = () => {
+    const API_URLS=`${API_ROOT}/todos`;
+    return customFetch(API_URLS, {
+      method: 'GET',
+    });
+  };
 
 //   //costume function for postTodo
 //   export const postTodo = () => {
