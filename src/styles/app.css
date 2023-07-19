@@ -1,0 +1,12 @@
+.App {
+    height: 90vh;
+    width: 60vw;
+    border: solid 5px gray;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.title {
+    color: gray;
+    text-align: center;
+}

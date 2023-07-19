@@ -1,0 +1,45 @@
+.todoForm {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 5% auto;
+    border: solid 3px gray;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.toggleFields {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.toggleFields label {
+    color: gray;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.todoToggle {
+    height: 15px;
+    width: 15px;
+}
+
+.todoContent {
+    border: 0;
+    outline: none;
+    border-bottom: solid 2px grey;
+    width: 60%;
+}
+
+.submitTodo {
+    color: white;
+    cursor: pointer;
+    outline: 0;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+    border: solid 2px gray;
+    background-color: goldenrod
+}

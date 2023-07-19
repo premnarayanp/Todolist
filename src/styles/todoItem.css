@@ -1,0 +1,46 @@
+.todoItems {
+    height: 40px;
+    width: 100%;
+    margin-top: 10px;
+    border: solid 2px rgb(230, 136, 136);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: burlywood;
+}
+
+.todoContent {
+    font-size: 18px;
+    color: rgb(90, 78, 46);
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+.todoToggle {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    outline: 0;
+}
+
+.todoAction button {
+    color: white;
+    cursor: pointer;
+    outline: 0;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+    border: solid 2px gray
+}
+
+.deleteTodo {
+    background-color: red;
+}
+
+.updateTodo {
+    background-color: rgb(72, 201, 72);
+    margin-left: 5px;
+}
