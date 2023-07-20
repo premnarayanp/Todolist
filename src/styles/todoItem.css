@@ -12,14 +12,21 @@
     background-color: burlywood;
 }
 
+.todoItems:hover {
+    background-color: beige;
+}
+
 .todoTitle {
     font-size: 18px;
     color: rgb(90, 78, 46);
     font-family: sans-serif;
     font-weight: 700;
-    border-bottom: solid 2px grey;
     width: 60%;
     min-width: 200px;
+    outline: 0;
+    border: 0;
+    border-bottom: solid 2px grey;
+    background-color: transparent;
 }
 
 .todoToggle {
@@ -44,12 +51,12 @@
     border: solid 2px gray;
 }
 
-.deleteTodo {
-    background-color: red;
+.editTodo {
+    background-color: rgb(72, 201, 72);
     margin-right: 5px;
 }
 
-.updateTodo {
-    background-color: rgb(72, 201, 72);
+.deleteTodo {
+    background-color: red;
     margin-top: 5px;
 }

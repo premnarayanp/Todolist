@@ -1,18 +1,22 @@
 import '../styles/app.css';
 import {useState,useEffect} from "react"
 import {TodoList,TodoForm} from './index';
-import { getTodoLists,postTodo } from '../api';
-import { useFormInput } from "../hooks";
+import { getTodoLists,postTodo,updateTodo } from '../api';
+import { useFormInput,useFormInputChecked } from "../hooks";
 
 function App() {
   const [todoList,setTodoList]=useState([]);
+  const [updateDisabled,setUpdateDisabled]=useState(false);
+  const [currentTodoItem,setCurrentTodoItem]=useState({});
+  // const [itemId,setItemId]=useState("");;
+
   const todoTitle=useFormInput("");
-  const completed=useFormInput(false);
+  const completed=useFormInputChecked(false);
 
   useEffect(() => {
+    //fetchTodo.......
     const fetchTodo = async () => {
       const response = await getTodoLists();
-
       if (response.success) {
         setTodoList(response.data);
       }
@@ -21,20 +25,56 @@ function App() {
     fetchTodo();
   }, []);
 
+  //postTodo .....
   async function handleSubmit(e){
-    // console.log("todoTitle.value=",todoTitle.value);
-    // console.log("completed.value=",completed.value);
     e.preventDefault();
     const response = await postTodo({
       "userId": 1,
       "title": todoTitle.value,
-      "completed": completed.value
+      "completed": completed.checked
+  });
+      if (response.success) {
+        const data=response.data.content;
+              data.id=response.data.id;
+
+        setTodoList([data,...todoList]);
+      }
+  }
+
+  //EditTodo set title and completed value in form for update
+  async function handleEditTodo(todoItem){
+    todoTitle.onChange({target:{value:todoItem.title}});
+    completed.onChange({target:{checked:todoItem.completed}});
+    setUpdateDisabled(true);
+    setCurrentTodoItem(todoItem);
+    //setItemId(todoItem.id);
+  }
+
+  //UpdateTodo ........
+  async function handleUpdateTodo(e){
+    e.preventDefault();
+    const response = await updateTodo(currentTodoItem.id,{
+      "userId": 1,
+      "id":currentTodoItem.id,
+      "title": todoTitle.value,
+      "completed":completed.checked
   });
 
-  console.log("response.data=",response.data)
       if (response.success) {
-        setTodoList([response.data.content,...todoList]);
+        const index=todoList.indexOf(currentTodoItem);
+        const data=response.data.content;
+
+        todoList[index].userId=data.userId;
+        todoList[index].title=data.title;
+        todoList[index].id=data.id;
+        todoList[index].completed=data.completed;
+        setTodoList([...todoList]);
+
+        // Reset Form after successfully update
+        todoTitle.onChange({target:{value:""}});
+        completed.onChange({target:{checked:false}});
       }
+      setUpdateDisabled(false);
   }
 
 
@@ -44,12 +84,15 @@ function App() {
       <h1 className="title">Todo App</h1>
       <TodoList 
         todoList={todoList}
+        onEditTodo={handleEditTodo}
       />
            
       <TodoForm 
        todoTitle={todoTitle}
        completed={completed}
+       updateDisabled={updateDisabled}
        onSubmit={handleSubmit}
+       onUpdate={handleUpdateTodo}
       />
     </div>
   );

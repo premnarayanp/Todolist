@@ -33,7 +33,8 @@
     width: 60%;
 }
 
-.submitTodo {
+
+/* .submitTodo {
     color: white;
     cursor: pointer;
     outline: 0;
@@ -42,4 +43,14 @@
     outline: none;
     border: solid 2px gray;
     background-color: goldenrod
+} */
+
+.submitTodo {
+    background-color: rgb(72, 201, 72);
+    margin-right: 5px;
+}
+
+.updateTodo {
+    background-color: red;
+    margin-top: 5px;
 }
