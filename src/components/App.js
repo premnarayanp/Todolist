@@ -1,7 +1,7 @@
 import '../styles/app.css';
 import {useState,useEffect} from "react"
 import {TodoList,TodoForm} from './index';
-import { getTodoLists,postTodo,updateTodo } from '../api';
+import { getTodoLists,postTodo,updateTodo,deleteTodo } from '../api';
 import { useFormInput,useFormInputChecked } from "../hooks";
 
 function App() {
@@ -36,8 +36,10 @@ function App() {
       if (response.success) {
         const data=response.data.content;
               data.id=response.data.id;
-
         setTodoList([data,...todoList]);
+        // Reset Form after successfully update
+        todoTitle.onChange({target:{value:""}});
+        completed.onChange({target:{checked:false}});
       }
   }
 
@@ -77,14 +79,24 @@ function App() {
       setUpdateDisabled(false);
   }
 
+  //Delete TodoItems .....
+  async function handleDeleteTodo(id){
+    const response = await deleteTodo(id);
+      if (response.success) {
+        const newTodoList=todoList.filter((item)=>item.id!==id);
+        setTodoList([...newTodoList]);
+        setUpdateDisabled(false);
+      }
+  }
 
 
   return (
     <div className="App">
-      <h1 className="title">Todo App</h1>
+      <h2 className="title">Todo App</h2>
       <TodoList 
         todoList={todoList}
         onEditTodo={handleEditTodo}
+        onDeleteTodo={handleDeleteTodo}
       />
            
       <TodoForm 

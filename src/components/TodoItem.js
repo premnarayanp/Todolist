@@ -1,15 +1,15 @@
 import "../styles/todoItem.css";
 
 export const TodoItem=(props)=>{
-       const {todoItem,onEditTodo}=props;
+       const {todoItem,onEditTodo,onDeleteTodo}=props;
        const {completed,title}=todoItem;
    return (
       <div className="todoItems">
         <input className="todoToggle" type="checkbox" checked={completed}/>
-        <input className="todoTitle" value={title} type="text"/>
+        <span className="todoTitle" >{title}</span>
         <div className="todoAction">
            <button className="editTodo" onClick = { ()=>{onEditTodo(todoItem)} }>edit</button>
-           <button className="deleteTodo">Delete</button>
+           <button className="deleteTodo" onClick = { ()=>{onDeleteTodo(todoItem.id)} }>Delete</button>
         </div>
       </div>
    )

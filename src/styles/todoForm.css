@@ -30,7 +30,8 @@
     border: 0;
     outline: none;
     border-bottom: solid 2px grey;
-    width: 60%;
+    width: 50%;
+    min-width: 120px;
 }
 
 

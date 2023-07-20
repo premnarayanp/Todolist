@@ -8,6 +8,7 @@ const TodoList=(props)=>{
                   <TodoItem 
                      todoItem={todoItem}
                      onEditTodo={props.onEditTodo}
+                     onDeleteTodo={props.onDeleteTodo}
                  />
                 ))   
             }

@@ -21,8 +21,8 @@ const customFetch = async (url, { body, ...customConfig }) => {
       const response = await fetch(url, config);
       console.log("url=",url,"config=",config)
       const data = await response.json();
-      console.log("response=",response);
-      console.log("data=",data);
+      // console.log("response=",response);
+      // console.log("data=",data);
       if (data) {
         return {
           data:data,
@@ -67,8 +67,8 @@ const customFetch = async (url, { body, ...customConfig }) => {
   //costume function for updateTodo
   export const updateTodo = (id,content) => {
     //Because  if id>100 that is not available on server so give error
-    if(id>100){
-      id=99;
+    if(id>=101){
+      id=100;
     }
     const API_URLS=`${API_ROOT}/posts/${id}`;
     return customFetch(API_URLS, {
@@ -80,11 +80,11 @@ const customFetch = async (url, { body, ...customConfig }) => {
   };
 
 
-  // //costume function for deleteTodo
-  // export const deleteTodo = (id) => {
-  //   const API_URLS=`${API_ROOT}/posts/${id}`;
-  //   return customFetch(API_URLS, {
-  //     method: 'DELETE',
-  //   });
-  // };
+  //costume function for deleteTodo
+  export const deleteTodo = (id) => {
+    const API_URLS=`${API_ROOT}/posts/${id}`;
+    return customFetch(API_URLS, {
+      method: 'DELETE',
+    });
+  };
 
